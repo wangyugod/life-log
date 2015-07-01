@@ -1,0 +1,54 @@
+<div ng-controller="CreateEventCtrl as cec">
+    <h1>Create Event</h1>
+
+    <form id="CreateEventForm" name="CreateEventForm" class="form-horizontal" role="form"
+          ng-submit="cec.createEvent()">
+        <legend class="sm-col-12">Basic Information</legend>
+
+        <div class="form-group">
+            <label id="lbl_title" for="title" class="col-sm-4 control-label" is-required="CreateEventForm.title">Title</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="title" id="title" placeholder=""
+                       ng-model="cec.event.title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_startTime" for="startTime" class="col-sm-4 control-label" is-required="CreateEventForm.startTime">Start Time</label>
+
+            <div class="col-sm-8">
+                <input type="datetime-local" class="form-control" name="startTime" id="startTime" placeholder=""
+                       ng-model="cec.event.startTime">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_endTime" for="startTime" class="col-sm-4 control-label" is-required="CreateEventForm.endTime">End Time</label>
+
+            <div class="col-sm-8">
+                <input type="datetime-local" class="form-control" name="startTime" id="endTime" placeholder=""
+                       ng-model="cec.event.endTime">
+            </div>
+        </div>
+
+
+        <div class="has-error" >
+            <span  ng-show="cec.event.error != ''" class="text-center help-block">{{cec.event.error}}</span>
+        </div>
+
+
+        <pre>{{ cec.event | json }}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" ng-disabled="!CreateEventForm.$valid" id="btn_create">Create Event</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

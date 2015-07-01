@@ -3,7 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET           /                      controllers.Application.index
+GET           /login                 @controllers.Users.login
+GET           /signup                @controllers.Users.signUp
+GET           /events/:userId        @controllers.Events.listEvents(userId)
+POST          /user                  @controllers.Users.createUser
+POST          /event                 @controllers.Events.createEvent
+DELETE        /event/:id             @controllers.Events.deleteEvent(id)
+POST          /login                 @controllers.Users.authenticate
+POST          /task                  @controllers.Tasks.createTask
+POST          /task/finish/:taskId  @controllers.Tasks.finishDailyTask(taskId)
+GET           /tasks/:userId         @controllers.Tasks.listTasks(userId)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET           /assets/*file          controllers.Assets.at(path="/public", file)

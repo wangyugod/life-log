@@ -1,0 +1,62 @@
+<div ng-controller="CreateTaskCtrl as ctc">
+    <h1>Create Event</h1>
+
+    <form id="CreateTaskForm" name="CreateTaskForm" class="form-horizontal" role="form"
+          ng-submit="ctc.createTask()">
+        <legend class="sm-col-12">Basic Information</legend>
+
+        <div class="form-group">
+            <label id="lbl_title" for="title" class="col-sm-4 control-label" is-required="CreateTaskForm.title">Title</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="title" id="title" placeholder=""
+                       ng-model="ctc.task.title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_startTime" for="startTime" class="col-sm-4 control-label" is-required="CreateTaskForm.startTime">Start Time</label>
+
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="startTime" id="startTime" placeholder=""
+                       ng-model="ctc.task.startTime">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_endTime" for="startTime" class="col-sm-4 control-label" is-required="CreateTaskForm.endTime">End Time</label>
+
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="startTime" id="endTime" placeholder=""
+                       ng-model="ctc.task.endTime">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_duration" for="title" class="col-sm-4 control-label" is-required="CreateTaskForm.title">Duration</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="duration" id="duration" placeholder=""
+                       ng-model="ctc.task.duration">
+            </div>
+        </div>
+
+        <div class="has-error" >
+            <span  ng-show="ctc.task.error != ''" class="text-center help-block">{{ctc.task.error}}</span>
+        </div>
+
+
+        <pre>{{ ctc.task | json }}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" ng-disabled="!CreateTaskForm.$valid" id="btn_create">Create Task</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

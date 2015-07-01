@@ -1,0 +1,124 @@
+
+
+<div ng-controller="EventCtrl as ec">
+    <div class="jumbotron">
+        <h2>A Modern Web Template</h2>
+        <p class="pull-right">... a UI created using AngularJS and Bootstrap</p>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <h3>
+                Events
+                <a ng-href="/task/create" class="btn btn-primary pull-right" id="btn_task_create">Add Task</a>
+            </h3>
+            <hr>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
+            <hr>
+        </div>
+
+        <table id="task_list" class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 20%">Title</th>
+                <th style="width: 20%">Start Time</th>
+                <th style="width: 20%">End Time</th>
+                <th style="width: 20%">End Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="task in ec.tasks | filter:searchText">
+                <td>
+                    {{ task.title }}
+                </td>
+                <td>
+                    {{ task.startTime }}
+                </td>
+                <td>
+                    {{ task.endTime }}
+                </td>
+                <td>
+                    {{ task.duration}}
+                </td>
+                <td>
+                    <a href="#" ng-click="ec.finishTask(task._id.$oid)" class="btn btn-success pull-right" id="btn_task_update">Finish</a>
+                </td>
+            </tr>
+            <tr ng-hide="ec.tasks.length">
+                <td colspan="3">
+                    <p class="text-center">No Tasks Found</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <h3>
+                Events
+                <a ng-href="/event/create" class="btn btn-primary pull-right" id="btn_user_create">Add Event</a>
+            </h3>
+            <hr>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
+            <hr>
+        </div>
+
+        <table id="event_list" class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">Title</th>
+                <th style="width: 10%">Start Time</th>
+                <th style="width: 10%">End Time</th>
+                <th style="width: 60%">Bar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="event in ec.events | filter:searchText">
+                <td>
+                    {{ event.title }}
+                </td>
+                <td>
+                    {{ event.startTime }}
+                </td>
+                <td>
+                    {{ event.endTime }}
+                </td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{event.percent}}">
+                            {{event.duration}}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a href="#" ng-click="ec.deleteEvent(event._id.$oid)" class="btn btn-success pull-right" id="btn_user_update">Delete</a>
+                </td>
+            </tr>
+            <tr ng-hide="ec.events.length">
+                <td colspan="3">
+                    <p class="text-center">No Events Found</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>
+            Debug
+        </h3>
+        <hr>
+        <accordion>
+            <accordion-group is-open="status.open">
+                <accordion-heading>
+                    Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </accordion-heading>
+                <pre>{{ uc.users | json }}</pre>
+            </accordion-group>
+        </accordion>
+    </div>
+
+</div>

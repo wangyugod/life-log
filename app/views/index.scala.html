@@ -1,5 +1,51 @@
-@(message: String)
+@(user: Option[User])
+<!doctype html>
+<html lang="zh"  ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Life Log, log all the time you spent in your life</title>
+            <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href='@routes.Assets.at("lib/bootstrap/css/bootstrap.css")'>
+        <link rel="stylesheet" href='@routes.Assets.at("lib/bootstrap/css/bootstrap-theme.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+    </head>
+    <script type="text/javascript">
+        var userId = @user match {
+            case Some(u) => {
+                "@u.email"
+            }
+            case _ => {
+                ""
+            }
+        }
+        console.log("userid " + userId)
+    </script>
+    <body>
+        @topbar(user)
 
-@main("Welcome to Play") {
-    <p> Hello @message</p>
-}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12" ng-view></div>
+            </div>
+
+        </div>
+
+        @footer()
+
+    </body>
+
+    <script src='@routes.Assets.at("lib/angularjs/angular.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("lib/angularjs/angular-route.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("lib/angular-ui-bootstrap/ui-bootstrap-tpls.js")' type="text/javascript"></script>
+
+        <!-- Coffee script compilled resources-->
+    <script src='@routes.Assets.at("javascripts/app.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/common/Config.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/directives/AppVersion.js")' type="text/javascript"></script>
+
+    <script src='@routes.Assets.at("javascripts/event/CreateEventCtrl.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/event/EventService.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/event/EventCtrl.js")' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/event/CreateTaskCtrl.js")' type="text/javascript"></script>
+
+</html>
